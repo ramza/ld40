@@ -1,13 +1,12 @@
 fileFormatVersion: 2
-guid: a3e90a7aa0d16854fb95c1c9b7ee722b
-timeCreated: 1512326627
+guid: 7a1d265e6f965b44183586a269463df0
+timeCreated: 1512324743
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: dog_0
-    21300002: dog_1
-    21300004: dog_2
-    21300006: dog_3
+    21300000: oldman_0
+    21300002: oldman_1
+    21300004: oldman_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -74,52 +73,26 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dog_0
+      name: oldman_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
-        width: 256
-        height: 256
+        x: 88
+        y: 0
+        width: 88
+        height: 75
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: dog_1
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 256
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: dog_2
+      name: oldman_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: dog_3
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 256
-        height: 256
+        width: 88
+        height: 75
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
