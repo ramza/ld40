@@ -9,10 +9,12 @@ public class CatsManager : MonoBehaviour {
 	public Text textBox;
 
 	public AudioSource phoneAudio;
+	public AudioSource sirenAudio;
 
 	List<GameObject> catList;
 	float timer = 0;
 	public Text catCount;
+	public Text goalText;
 	float offset = 1;
 	int totalCats = 0;
 	int MAXCATS = 300;
@@ -22,15 +24,21 @@ public class CatsManager : MonoBehaviour {
 
 	float textTimer = 0;
 
-	string[] dialogue = new string[] {"Hey! I thought I told you to stop making those cats. Enough already.", 
-									   "What is your problem? I've asked you to please stop it with the cats! You're ridiculous.",
-										"REALLY?! This is way too many cats! No more cats. I'm gonna call the cops if you make another cat.",
-										"I dit it! I called the cops. You're going to jail. I hope you're happy with yourself. I just can't believe people like you."};
+
+	int[] goals = new int[] { 10, 30, 90, 200, 270, 320,350,400 };
+	string[] dialogue = new string[] {"Hey! I thought I told you to stop making those cats. Enough already, I'm sick of your weird behavior.", 
+									   "What is your problem? I've asked you to please stop it with the cats! You're ridiculous. You do realize just how utterly ridiculous all of this is don't you?",
+										"REALLY?! This is way too many cats! I'm gonna call the cops! I will, I'll have you arrested for making all those cats.",
+										"I dit it! I called the cops. You see what you made me do? You're going to jail. I hope you're happy with yourself. I just can't believe people like you.",
+										"You're dispicable. Where are those cops? How come you aren't behind bars? ARGGG!!!",
+										 "You have to be the worst neighbor who'se ever lived. I'm going to march over there and punch you right in the nose!",
+											"There's never been a worlse villain in all of history than you with your stupid cat magic. I'll make you pay for this!"};
 
 	// Use this for initialization
 	void Start () {
 		catList = new List<GameObject> ();
 		textPanel.SetActive (false);
+		goalText.text = "Goals: " + goals [0].ToString();
 	}
 
 	public void addToCatList(GameObject cat){
@@ -53,11 +61,15 @@ public class CatsManager : MonoBehaviour {
 			textTimer = 0;
 			textPanel.SetActive (false);
 		}
-		if (totalCats > catTrigger) {
+		if (totalCats >= catTrigger) {
 			textTimer = 0;
 			catTrigger *= 3;
 			textBox.text = dialogue [counter];
+			if (counter == 3)
+				sirenAudio.Play ();
 			counter++;
+			catTrigger = goals [counter];
+			goalText.text = "Goals: " + catTrigger.ToString();
 			textPanel.SetActive (true);
 			phoneAudio.Play ();
 		}
