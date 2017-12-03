@@ -20,12 +20,12 @@ public class CatsManager : MonoBehaviour {
 	int MAXCATS = 300;
 
 	int counter = 0;
-	int catTrigger = 10;
+	int catTrigger;
 
 	float textTimer = 0;
 
 
-	int[] goals = new int[] { 10, 30, 90, 200, 270, 320,350,400 };
+	int[] goals = new int[] { 20, 60, 100, 200, 270, 320,350,400 };
 	string[] dialogue = new string[] {"Hey! I thought I told you to stop making those cats. Enough already, I'm sick of your weird behavior.", 
 									   "What is your problem? I've asked you to please stop it with the cats! You're ridiculous. You do realize just how utterly ridiculous all of this is don't you?",
 										"REALLY?! This is way too many cats! I'm gonna call the cops! I will, I'll have you arrested for making all those cats.",
@@ -36,6 +36,7 @@ public class CatsManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		catTrigger = goals [0];
 		catList = new List<GameObject> ();
 		textPanel.SetActive (false);
 		goalText.text = "Goals: " + goals [0].ToString();
@@ -56,8 +57,8 @@ public class CatsManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		textTimer += Time.deltaTime;
-		if (textTimer > 10f) {
+		textTimer++;
+		if (textTimer > 1000f) {
 			textTimer = 0;
 			textPanel.SetActive (false);
 		}
