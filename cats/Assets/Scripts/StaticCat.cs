@@ -12,6 +12,7 @@ public class StaticCat : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		audio.Play ();
+		if(other.tag == "Player")
+			audio.Play ();
 	}
 }
