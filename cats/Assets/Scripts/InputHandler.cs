@@ -9,18 +9,30 @@ public class InputHandler : MonoBehaviour {
 	public List<GameObject> catList;
 	public CatsManager catManager;
 	public Camera cam;
+    public Canvas menuCanvas;
 	float timer = 2f;
+    bool menuActive = false;
 
 	// Use this for initialization
 	void Start () {
-		
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
 		if (Input.GetKeyDown (KeyCode.Escape)) {
-
+            if (!menuActive)
+            {
+                Instantiate(menuCanvas);
+                menuActive = true;
+                Time.timeScale = 0;
+            } else
+            {
+                Destroy(GameObject.FindGameObjectWithTag("Menu"));
+                menuActive = false;
+                Time.timeScale = 1;
+            }
 		}
 
 		timer += Time.deltaTime;
