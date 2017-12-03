@@ -12,10 +12,7 @@ public class BarrierScript : MonoBehaviour {
 	
 	void OnTriggerExit2D(Collider2D col){
 		if (col.tag == "Cat") {
-			print ("kill the cat!");
-			col.GetComponent<CatController> ();
 			catManager.removeFromCatList (col.gameObject);
-			Destroy (col.gameObject);
-		}
+		} 
 	}
 }
