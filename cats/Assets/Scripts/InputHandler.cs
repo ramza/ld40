@@ -18,6 +18,11 @@ public class InputHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+
+		}
+
 		timer += Time.deltaTime;
 
 		if(timer > 2f && Input.GetMouseButton(0)){
@@ -29,7 +34,6 @@ public class InputHandler : MonoBehaviour {
 		
 			Instantiate(spawnObject,new Vector3(worldPos.x, worldPos.y, 0),Quaternion.identity);
 			catManager.addToCatList (spawnObject as GameObject);
-
 
 		}
 		
