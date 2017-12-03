@@ -9,21 +9,30 @@ public class CatController : MonoBehaviour {
 	float timer = 0;
 	Rigidbody2D rb2d;
 	AudioSource audio;
+	bool sex = false;
+	string name = "cat";
 
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
 		rb2d = GetComponent<Rigidbody2D> ();
 		audio = GetComponent<AudioSource> ();
+
+		int r = Random.Range (0, 5);
+		if (r < 2)
+			sex = true;
 	}
 
 	void OnTriggerEnter2D (Collider2D col){
 		if (col.tag == "Player") {
-			print ("cats meow");
 			audio.Play ();
 		}
 	}
-	
+
+	public bool GetSex(){
+		return sex;
+	}
+
 	// Update is called once per frame
 	void Update () {
 		timer += Time.deltaTime;
@@ -37,10 +46,10 @@ public class CatController : MonoBehaviour {
 				r = Random.Range (0, 2);
 				if (r < 1) {
 					anim.SetFloat ("x", -1);
-					rb2d.velocity = new Vector2 (-1, 0);
+					rb2d.velocity = new Vector2 (-1, Random.Range(-1,1));
 				} else {
 					anim.SetFloat ("x", 1);
-					rb2d.velocity = new Vector2 (1, 0);
+					rb2d.velocity = new Vector2 (1, Random.Range(-1,1));
 				}
 			} else {
 				anim.SetFloat ("x", 0);
