@@ -12,12 +12,14 @@ public class CatController : MonoBehaviour {
 	bool sex = false;
 	string name = "cat";
 
+	Vector2 velocity;
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
 		rb2d = GetComponent<Rigidbody2D> ();
 		audio = GetComponent<AudioSource> ();
-
+		velocity = new Vector2 (0, 0);
 		int r = Random.Range (0, 5);
 		if (r < 2)
 			sex = true;
@@ -37,6 +39,8 @@ public class CatController : MonoBehaviour {
 	void Update () {
 		timer += Time.deltaTime;
 		if (timer > 5f) {
+			anim.SetFloat ("x", 0);
+			velocity = new Vector2 (0, 0);
 			timer = 0;
 			float r = Random.Range (0, 2);
 			if (r < 1)
@@ -46,15 +50,16 @@ public class CatController : MonoBehaviour {
 				r = Random.Range (0, 2);
 				if (r < 1) {
 					anim.SetFloat ("x", -1);
-					rb2d.velocity = new Vector2 (-1, Random.Range(-1,1));
+					velocity = new Vector2 (-1, Random.Range(-1,1));
 				} else {
 					anim.SetFloat ("x", 1);
-					rb2d.velocity = new Vector2 (1, Random.Range(-1,1));
+					velocity = new Vector2 (1, Random.Range(-1,1));
 				}
 			} else {
 				anim.SetFloat ("x", 0);
-				rb2d.velocity = new Vector2 (0, 0);
+				velocity = new Vector2 (0, 0);
 			}
 		}
+		rb2d.velocity = velocity;
 	}
 }
