@@ -14,4 +14,9 @@ public class LevelManager : MonoBehaviour {
     {
         SceneManager.LoadScene(name);
     }
+
+	public void ExitGame(){
+		print ("Exit Game");
+		Application.Quit ();
+	}
 }
