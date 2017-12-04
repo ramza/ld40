@@ -85,7 +85,6 @@ public class CatsManager : MonoBehaviour {
 				SceneManager.LoadScene("End");
 		}
 		if (totalCats >= catTrigger) {
-			print ("set curtain true");
 			curtainAnim.SetBool ("open", true);
 			if (counter == 1 || counter == 3) {
 				DogSpawn (3);
