@@ -29,7 +29,7 @@ public class CatsManager : MonoBehaviour {
 	float textTimer = 0;
 
 
-	int[] goals = new int[] { 20, 60, 100, 150, 200, 270, 320,350,400 };
+	int[] goals = new int[] { 20, 60, 100, 150, 200, 300, 600,1000,2000,3000 };
 	string[] dialogue = new string[] {"Hey! I thought I told you to stop making those cats. Enough already, I'm sick of your weird behavior.", 
 									   "What is your problem? I've asked you to please stop it with the cats!You do realize just how utterly ridiculous all this is don't you?",
 										"REALLY?! This is way too many cats! I'm gonna call the cops! I will, I'll have you arrested for making all those cats.",
@@ -50,7 +50,6 @@ public class CatsManager : MonoBehaviour {
 	}
 
 	void DogSpawn(int total){
-		print ("spawning dogs");
 		for (int i = 0; i < total; i++) {
 			Instantiate (dog, new Vector3 (8, Random.Range (-7, 7), 0), Quaternion.identity);	
 		}
@@ -77,6 +76,8 @@ public class CatsManager : MonoBehaviour {
 		if (textTimer > 1000f) {
 			textTimer = 0;
 			textPanel.SetActive (false);
+			if (counter >= goals.Length-1)
+				SceneManager.LoadScene("End");
 		}
 		if (totalCats >= catTrigger) {
 			
@@ -90,8 +91,6 @@ public class CatsManager : MonoBehaviour {
 			if (counter > 3)
 				sirenAudio.Play ();
 			counter++;
-			if (counter >= goals.Length-1)
-				SceneManager.LoadScene("End");
 
 			catTrigger = goals [counter];
 			goalText.text = "Goals: " + catTrigger.ToString();
@@ -106,7 +105,8 @@ public class CatsManager : MonoBehaviour {
 			catArray = GameObject.FindGameObjectsWithTag ("Cat");
 			foreach (GameObject cat in catArray) {
 				CatController newCat = cat.gameObject.GetComponent<CatController> ();
-				Instantiate (newCat, new Vector3 (cat.transform.localPosition.x + Random.Range (-offset, offset), cat.transform.localPosition.x + Random.Range (-offset, offset), 0), Quaternion.identity);
+				Vector3 spawnPosition = new Vector3 (cat.transform.position.x + Random.Range (-offset, offset), cat.transform.position.y + Random.Range (-offset, offset), 0);
+				Instantiate (newCat, spawnPosition, Quaternion.identity);
 				totalCats++;
 			}
 			catCount.text = "Total Cats: " + totalCats;
