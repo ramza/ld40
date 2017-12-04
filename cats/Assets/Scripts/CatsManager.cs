@@ -14,6 +14,8 @@ public class CatsManager : MonoBehaviour {
 
 	public GameObject dog;
 
+
+	public Animator curtainAnim;
 	GameObject[] catArray;
 	List<GameObject> catList;
 	float timer = 0;
@@ -21,7 +23,7 @@ public class CatsManager : MonoBehaviour {
 	public Text goalText;
 	float offset = 1;
 	int totalCats = 0;
-	int MAXCATS = 300;
+	int MAXCATS = 1000;
 
 	int counter = 0;
 	int catTrigger;
@@ -29,11 +31,11 @@ public class CatsManager : MonoBehaviour {
 	float textTimer = 0;
 
 
-	int[] goals = new int[] { 20, 60, 100, 150, 200, 300, 600,1000,2000,3000 };
+	int[] goals = new int[] { 20, 60, 100, 150, 200, 600, 1500,3000,6000,7000 };
 	string[] dialogue = new string[] {"Hey! I thought I told you to stop making those cats. Enough already, I'm sick of your weird behavior.", 
-									   "What is your problem? I've asked you to please stop it with the cats!You do realize just how utterly ridiculous all this is don't you?",
-										"REALLY?! This is way too many cats! I'm gonna call the cops! I will, I'll have you arrested for making all those cats.",
-										"Now you've really made me angry. You've left me no choice but to leg my dogs loose on you! They'll take care of your annoying cats!",
+									   "What is your problem? I've asked you to please stop it with the cats! You do realize just how utterly ridiculous all this is don't you?",
+										"REALLY?! This is way too many cats! I'm gonna call the cops! I'll have you arrested for making all those cats.",
+										"Now you've really made me angry. You've left me no choice but to let my dogs loose on you! They'll take care of your annoying cats!",
 										"I dit it! I called the cops. You see what you made me do? You're going to jail. I hope you're happy with yourself. I just can't believe people like you.",
 										"You're dispicable. Where are those cops? How come you aren't behind bars? ARGGG!!!",
 										 "You have to be the worst neighbor who'se ever lived. I'm going to march over there and punch you right in the nose!",
@@ -70,17 +72,19 @@ public class CatsManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
 		totalCats = GameObject.FindGameObjectsWithTag ("Cat").Length;
 		catCount.text = "Total Cats: " + totalCats;
 		textTimer++;
 		if (textTimer > 1000f) {
 			textTimer = 0;
+			curtainAnim.SetBool ("open", false);
 			textPanel.SetActive (false);
-			if (counter >= goals.Length-1)
+			if (counter >= 5)
 				SceneManager.LoadScene("End");
 		}
 		if (totalCats >= catTrigger) {
-			
+			curtainAnim.SetBool ("open", true);
 			if (counter == 1 || counter == 3) {
 				Debug.Log ("Counter = 1");
 				DogSpawn (3);

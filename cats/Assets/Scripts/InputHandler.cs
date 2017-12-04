@@ -23,7 +23,6 @@ public class InputHandler : MonoBehaviour {
 	}
 
 	void ValueChange(){
-		print ("volume changed" + volumeSlider.value.ToString());
 		bkgMusic.volume = volumeSlider.value;
 	}
 
