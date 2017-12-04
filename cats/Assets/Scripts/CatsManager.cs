@@ -21,7 +21,7 @@ public class CatsManager : MonoBehaviour {
 	float timer = 0;
 	public Text catCount;
 	public Text goalText;
-	float offset = 1;
+	float offset = 1f;
 	int totalCats = 0;
 	int MAXCATS = 1000;
 
@@ -78,15 +78,16 @@ public class CatsManager : MonoBehaviour {
 		textTimer++;
 		if (textTimer > 1000f) {
 			textTimer = 0;
+			print ("set curtain false");
 			curtainAnim.SetBool ("open", false);
 			textPanel.SetActive (false);
-			if (counter >= 5)
+			if (counter >= 6)
 				SceneManager.LoadScene("End");
 		}
 		if (totalCats >= catTrigger) {
+			print ("set curtain true");
 			curtainAnim.SetBool ("open", true);
 			if (counter == 1 || counter == 3) {
-				Debug.Log ("Counter = 1");
 				DogSpawn (3);
 			}
 			textTimer = 0;

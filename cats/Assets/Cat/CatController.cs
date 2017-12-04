@@ -42,7 +42,7 @@ public class CatController : MonoBehaviour {
 			anim.SetFloat ("x", 0);
 			velocity = new Vector2 (0, 0);
 			timer = 0;
-			float r = Random.Range (0, 2);
+			int r = Random.Range (0, 2);
 			if (r < 1)
 				walk = !walk;
 				
@@ -50,10 +50,10 @@ public class CatController : MonoBehaviour {
 				r = Random.Range (0, 2);
 				if (r < 1) {
 					anim.SetFloat ("x", -1);
-					velocity = new Vector2 (-1, Random.Range(-1,1));
+					velocity = new Vector2 (-1, Random.Range(-1f,1f));
 				} else {
 					anim.SetFloat ("x", 1);
-					velocity = new Vector2 (1, Random.Range(-1,1));
+					velocity = new Vector2 (1, Random.Range(-1f,1f));
 				}
 			} else {
 				anim.SetFloat ("x", 0);
